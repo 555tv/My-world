@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>My Brain World</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Карта */
+.map-container {
+    position: relative;
+    display: inline-block;
+}
+
+.map-container img {
+    width: 1200px;
+    max-width: 100%;
+    display: block;
+}
+
+/* Невидимые зоны над ромбами */
+.hotspot {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* Координаты ромбов */
+.h1 { left: 390px; top: 120px; }
+.h2 { left: 850px; top: 120px; }
+.h3 { left: 600px; top: 300px; }
+.h4 { left: 915px; top: 500px; }
+.h5 { left: 620px; top: 670px; }
+
+/* Всплывающее описание */
+.tooltip {
+    display: none;
+    position: absolute;
+
+    top: 45px;
+    left: -80px;    
+
+    width: 240px;
+    padding: 12px;
+
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #444;
+    border-radius: 10px;
+
+    text-align: left;
+    z-index: 1000;
+
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.hotspot:hover .tooltip {
+    display: block;
+}
+
+/* Статья */
+.article {
+    max-width: 1000px;
+    margin: 30px auto;
+
+    white-space: pre-wrap;
+    text-align: left;
+
+    line-height: 1.6;
+    font-size: 18px;
+
+    padding: 20px;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Мой мир</h1>
+
+<div class="map-container">
+
+    <img src="OIP 1.2.png.png" alt="Карта">
+
+    <!-- Ромб 1 -->
+    <div class="hotspot h1">
+        <div class="tooltip">
+            <strong>Миргень</strong><br>
+            Стоянка первых людей (20-75 ос.). Отличительные черты: щуплое телосложение
+        </div>
+    </div>
+
+    <!-- Ромб 2 -->
+    <div class="hotspot h2">
+        <div class="tooltip">
+            <strong>Панродда</strong><br>
+            Стоянка первых людей (10-20 ос.). Отличительные черты: волосы темных цветов и голубые глаза, грубое телосложение
+        </div>
+    </div>
+
+    <!-- Ромб 3 -->
+    <div class="hotspot h3">
+        <div class="tooltip">
+            <strong>Алиесс</strong><br>
+            Стоянка первых людей (75+ ос.). Отличительные черты: рудые волосы и зеленые глаза, так же встречаються блондины
+        </div>
+    </div>
+
+    <!-- Ромб 4 -->
+    <div class="hotspot h4">
+        <div class="tooltip">
+            <strong>Макхбик</strong><br>
+           Стоянка первых людей (75+ ос.). Отличительные черты: каштановые или золотистые волосы и темно-синие глаза, щуплое телосложение
+        </div>
+    </div>
+
+    <!-- Ромб 5 -->
+    <div class="hotspot h5">
+        <div class="tooltip">
+            <strong>Ир-Шиям</strong><br>
+           Стоянка первых людей (20-75 ос.). Отличительные черты: угольно-черные волосы и карие глаза, среднее телосложение
+        </div>
+    </div>
+
+</div>
+
+<div id="article" class="article">
+Загрузка статьи...
+</div>
+
+<script>
+fetch('history.txt.txt')
+    .then(response => response.text())
+    .then(text => {
+        document.getElementById('article').textContent = text;
+    })
+    .catch(error => {
+        document.getElementById('article').textContent =
+            'Не удалось загрузить текст.';
+        console.error(error);
+    });
+</script>
+
+</body>
+</html>
